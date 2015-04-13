@@ -1,0 +1,18 @@
+.Menu {
+  background: #28592B;
+
+  .item, 
+  .item-content, 
+  .item-complex {
+    background-color: rgba(0,0,0,0);
+    color: #FFFFFF;
+    text-align: center;
+  }
+
+  .item.activated,
+  .item-complex.activated .item-content, 
+  .item .item-content.activated {
+    background-color: #28961C;
+  }
+
+}

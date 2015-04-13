@@ -1,0 +1,21 @@
+<ion-view view-cached="false">
+  <ion-nav-title>Feed</ion-nav-title>
+  <ion-content>
+
+    <ion-list>
+      <ion-item ng-repeat="episode in releases">
+        <a class="item item-thumbnail-left" 
+           ng-href="#/app/series/{{episode.series._id}}">
+          <img ng-src="{{ episode.series.content.min }}">
+          <h2>{{episode.series.content.title}}</h2>
+          <p>Episode {{ episode.number }}</p>
+          <p> Available on: </p>
+          <p ng-if="episode.releases.fullhd.length > 0">1080p</p>
+          <p ng-if="episode.releases.hd.length > 0">720p</p>
+          <p ng-if="episode.releases.lq.length > 0">480p</p>
+        </a>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>

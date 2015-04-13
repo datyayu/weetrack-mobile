@@ -1,0 +1,48 @@
+.Series {
+  text-align: center;
+  color: #505050;
+  
+  a, 
+  a:visited, 
+  a:focus {
+    color: $main_green;
+    text-decoration: none;
+  }
+
+  h2 {
+    width: 100%;
+    background-color: #808080;
+    color: white;
+  }
+
+  .Series-cover {
+    padding-top: 1em;
+  }
+
+  .Series-title {
+    color: #505050;
+    font-size: 2em;
+  }
+
+  .Series-links {
+    text-align: left;
+  }
+
+  .Series-video {
+    margin: 0 auto;
+    width: 100vw;
+    height: 53vw;
+    max-width: 100%;
+    overflow: hidden;
+    padding-bottom: 0;
+    position: relative;
+    
+    iframe, object, embed {
+      height: 100%;
+      left: 0;
+      position: absolute; 
+      top: 0;
+      width: 100%;
+    }
+  }
+}

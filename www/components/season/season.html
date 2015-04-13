@@ -1,0 +1,33 @@
+<ion-view cache-view="false">
+  <ion-nav-title>Spring 2015</ion-nav-title>
+  <ion-content class="Season">
+
+  <!-- Filters -->
+    <div class="Season-filters">
+      <p class="Season-title"> Sort by: </p>
+      <button class="button button-outline"
+              ng-class="{'button-balanced': sortOption == 'content.title'}" 
+              ng-click="toggleSortOption('content.title')">
+        Title
+      </button>
+      <button class="button button-outline"
+              ng-class="{'button-balanced': sortOption == 'createdAt'}"
+              ng-click="toggleSortOption('createdAt')">
+        Added date
+      </button>
+    </div>
+
+  <!-- Series list -->
+  <ion-list>
+    <ion-item ng-repeat="series in seriesList | orderBy: sortOption : sortReverse">
+       <a class="item item-thumbnail-left" 
+           ng-href="#/app/series/{{series._id}}">
+          <img ng-src="{{ series.content.min }}">
+          <h2>{{series.content.title}}</h2>
+          <p>{{series.content.episodes}} episodes released</p>
+          <p>{{series.content.status }}</p>
+          <p>{{series.content.description }}</p>
+        </a>
+    </ion-item>
+  </ion-list>
+</div> <!-- /.Season -->

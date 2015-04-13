@@ -1,0 +1,117 @@
+<ion-view view-cached="false">
+  <ion-nav-title>{{series.content.title}}</ion-nav-title>
+  <ion-content class="Series">
+    
+  <!-- Anime cover image -->
+    <figure class="Series-cover">
+      <img ng-src="{{ series.content.img }}">
+    </figure>
+
+  <!-- Anime title -->
+    <h1 class="Series-title">{{ series.content.title }}</h1>
+
+  <!-- Series information -->
+    <h2 class="padding"
+        ng-click="hideInformation = !hideInformation">Information</h2>
+    <div ng-show="!hideInformation">
+    <!-- Status -->
+      <p>{{ series.content.status }}</p>
+    <!-- Episodes -->
+      <p>{{ series.content.episodes || 0 }}  episodes</p>
+    <!-- Season -->
+      <p> {{ series.content.season }}</p>
+    <!-- Links -->
+      <p >
+        <a ng-href="{{ series.content.links.official }}" 
+           target="_system">
+          Official Site 
+        </a>
+        ~
+        <a ng-href="{{ series.content.links.twitter }}" 
+           target="_system">
+          Twitter 
+        </a>
+        ~
+        <a ng-href="{{ series.content.links.mal }}" 
+           target="_system">
+          MAL
+        </a>
+      </p>
+    </div> 
+
+  <!-- Sypnosis -->
+    <div>
+    <!-- Section title -->
+      <h2 class="padding"
+          ng-click="hideSynopsis = !hideSynopsis">Synopsis</h2>
+    <!-- Synopsis text -->
+      <p ng-show="!hideSynopsis">
+        {{ series.content.description }}
+      </p>
+    </div> <!-- /.Series-content-info -->
+  
+  <!-- PVs -->
+    <div>
+    <!-- Section title -->
+      <h2 class="padding"
+          ng-click="hidePVs = !hidePVs">PVs</h2>
+    <!-- PV list -->
+      <ion-list ng-show="!hidePVs">
+        <ion-item ng-repeat="video in series.content.pvs">
+          <iframe class="Series-video"
+                  width="560" 
+                  height="315" 
+                  target='_top'
+                  ng-src="{{ video.replace('watch?v=','embed/') + '?autoplay=0&showinfo=0&controls=0'}}" 
+                  frameborder="0" 
+                  allowfullscreen></iframe>
+        </ion-item>
+        <p ng-if="series.content.pvs.length === 0">
+            No PVs added
+        </p>
+      </ion-list>
+    </div>
+
+  <!-- Episodes -->
+    <div>
+    <!-- Section title -->
+      <h2 class="padding"
+          ng-click="hideEpisodes = !hideEpisodes">Episodes</h2>
+    <!-- Episode list -->
+      <ion-list ng-show="!hideEpisodes">
+        <ion-item ng-repeat="episode in series.episodes">
+          <!-- Title -->
+          <p>
+            Episode {{ episode.number }}
+            <!-- <span> series.getTimeDiff(episode.createdAt)</span> -->
+          </p> 
+          <div class="Series-links">
+          <!-- Links -->
+            <p> 1080p
+              <a ng-repeat="fansub in episode.releases.fullhd"
+                 ng-href="{{ fansub.url }}" target="_system">
+                 {{ fansub.group }}
+              </a>
+            </p>
+            <p> 720p 
+              <a ng-repeat="fansub in episode.releases.hd "
+                 ng-href="{{ fansub.url }}"
+                 target="_system">
+                 [ {{ fansub.group }} ]
+              </a>
+            </p>
+            <p> 480p
+              <a ng-repeat="fansub in episode.releases.lq"
+                 ng-href="{{ fansub.url }}"
+                 target="_system">
+                 [ {{ fansub.group }} ]
+              </a>
+            </p>
+          </div>        
+        </ion-item>
+        <p ng-if="series.episodes.length === 0">No episodes added</p>
+      </ion-list>
+    </div>
+  
+  </ion-content>
+</ion-view>
